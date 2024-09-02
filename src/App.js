@@ -1,24 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from "react";
+import { Grid, Paper, Typography } from "@mui/material";
+import Editor from "./components/Editor";
+import Preview from "./components/Preview";
 
 function App() {
+  const [html, setHtml] = useState("");
+  const [css, setCss] = useState("");
+  const [js, setJs] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Grid container spacing={2} style={{ height: "100vh" }}>
+      <Grid item xs={4}>
+        <Paper
+          style={{
+            height: "100%",
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Typography variant="h6" gutterBottom>
+            HTML
+          </Typography>
+          <Editor language="html" value={html} onChange={setHtml} />
+        </Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Paper
+          style={{
+            height: "100%",
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            CSS
+          </Typography>
+          <Editor language="css" value={css} onChange={setCss} />
+        </Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Paper
+          style={{
+            height: "100%",
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            JavaScript
+          </Typography>
+          <Editor language="javascript" value={js} onChange={setJs} />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} style={{ height: "50%" }}>
+        <Paper
+          style={{
+            height: "100%",
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Preview
+          </Typography>
+          <Preview html={html} css={css} js={js} />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 
